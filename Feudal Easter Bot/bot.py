@@ -43,7 +43,7 @@ class FeudalEaster(commands.Bot):
         print("Feudal Easter bot is now online!")
         for cog in cogs:
             try:
-                await bot.load_extension(cog)
+                bot.load_extension(cog)
                 print(f"Loaded {cog}")
             except Exception as er:
                 exc = ''.join(traceback.format_exception(type(er), er, er.__traceback__, chain=False))
