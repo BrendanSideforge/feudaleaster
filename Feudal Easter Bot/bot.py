@@ -37,13 +37,17 @@ class FeudalEaster(commands.Bot):
         self.uncommon_egg = "<:uncommon:565706709880799247>"
         self.mystical_egg = "<:mystical:565706700825427978>"
 
+        self.blacklisted = [
+            483262780376481801 # Abstract
+        ]
+
         self.messages = 0
 
     async def on_ready(self):
         print("Feudal Easter bot is now online!")
         for cog in cogs:
             try:
-                bot.load_extension(cog)
+                await bot.load_extension(cog)
                 print(f"Loaded {cog}")
             except Exception as er:
                 exc = ''.join(traceback.format_exception(type(er), er, er.__traceback__, chain=False))
