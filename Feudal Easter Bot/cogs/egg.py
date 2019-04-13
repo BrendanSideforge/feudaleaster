@@ -69,6 +69,8 @@ class Egg(commands.Cog):
 
     @commands.command()
     async def catch(self, ctx, code: int = None):
+        if ctx.author.id in self.bot.blacklisted:
+            return await ctx.author.send(f"Nope, you're not gonna use any commands.")
         self.data = self.col.find_one()
         if code == None:
             return 
@@ -97,6 +99,8 @@ class Egg(commands.Cog):
 
     @commands.command(aliases=["lb", "leading"])
     async def leaderboard(self, ctx):
+        if ctx.author.id in self.bot.blacklisted:
+            return await ctx.author.send(f"Nope, you're not gonna use any commands.")
         if not ctx.channel.id in self.channels:
             return
         await self.leaderboardData(ctx)
@@ -111,6 +115,8 @@ class Egg(commands.Cog):
     async def count(self, ctx, user: discord.Member = None):
         if not ctx.channel.id in self.channels:
             return
+        if ctx.author.id in self.bot.blacklisted:
+            return await ctx.author.send(f"Nope, you're not gonna use any commands.")
         self.data = self.col.find_one()
         if not user:
             user = ctx.author 
