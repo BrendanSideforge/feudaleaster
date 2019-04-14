@@ -57,13 +57,13 @@ class Shop(commands.Cog):
                 return await ctx.send(f"{self.bot.x_mark} Very sorry **{ctx.author.name}**! You do not have enough eggs to buy the **Egg Multiplier**! Your current eggs are **{eggs}/5**.")
             else:
                 document = {
-                    {"auth": True},
-                    {
-                        "$set": {str(ctx.author.id):{
+                    "auth": True,
+                    "$set": {
+                        str(ctx.author.id): {
                             "eggs": eggs,
                             "currency": self.data[str(ctx.author.id)]["currency"],
-                            "items": "Egg Multiplier"
-                        }}
+                            "items": items + "Egg Multiplier"
+                        }
                     }
                 }
                 self.col.update_one(document)
