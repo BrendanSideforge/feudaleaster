@@ -53,10 +53,11 @@ class Shop(commands.Cog):
             if eggs < 5:
                 return await ctx.send(f"{self.bot.x_mark} Very sorry **{ctx.author.name}**! You do not have enough eggs to buy the **Egg Multiplier**! Your current eggs are **{eggs}/5**.")
             else:
+                items = self.data[str(ctx.author.id)]['items']
                 document = {"$set": {str(ctx.author.id):{
-                    "eggs": eggs,
+                    "eggs": eggs - 5,
                     "currency": self.data[str(ctx.author.id)]["currency"],
-                    "items": self.data[str(ctx.author.id)]["items"].append("Egg Multiplier")
+                    "items": [*items, 'Egg Multiplier']
                 }}}
                 self.col.update_one({"auth": True}, document)
                 await ctx.send(f"{self.bot.check_mark} Yay! You have bought the {self.bot.mutliplier} **Egg Multiplier**! You will now get 2x the amount of eggs!")
