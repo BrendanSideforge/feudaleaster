@@ -72,6 +72,9 @@ class Egg(commands.Cog):
         if ctx.author.id in self.bot.blacklisted:
             return await ctx.author.send(f"Nope, you're not gonna use any commands.")
         self.data = self.col.find_one()
+        count = False
+        if count == True:
+            return
         if code == None:
             return 
         if code == self.bot.codes:
@@ -93,7 +96,7 @@ class Egg(commands.Cog):
                     }}}
                 self.col.update_one({"auth": True}, document1)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 2} eggs! Since **{ctx.author.name}** has the **Egg Multiplier** he has gotten 2x the eggs!")
-                return
+                count = True
             else:
                 document2 = {"$set": {str(ctx.author.id):{
                     "eggs": self.data[str(ctx.author.id)]["eggs"] + 1,
@@ -103,7 +106,7 @@ class Egg(commands.Cog):
                 self.col.update_one({"auth": True}, document2)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 1} eggs!")
                 self.bot.codes = 0
-                return
+                count = True
         else:
             return
 
