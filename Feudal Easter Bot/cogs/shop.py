@@ -60,7 +60,7 @@ class Shop(commands.Cog):
                         "$set": {str(ctx.author.id):{
                             "eggs": eggs,
                             "currency": self.data[str(ctx.author.id)]["currency"],
-                            "items": self.data[str(ctx.author.id)]["items"] + "Egg Multiplier"
+                            "items": self.data[str(ctx.author.id)]["items"] + ["Egg Multiplier"]
                         }}
                     }
                 }
