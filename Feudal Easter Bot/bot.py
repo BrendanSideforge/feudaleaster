@@ -38,6 +38,7 @@ class FeudalEaster(commands.Bot):
         self.mystical_egg = "<:mystical:565706700825427978>"
 
         self.blacklisted = [
+            280444560973234176
         ]
 
         self.messages = 0
