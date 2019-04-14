@@ -40,7 +40,7 @@ class Shop(commands.Cog):
         self.data = self.col.find_one()
         if not item:
             return await ctx.send(f"{self.bot.x_mark} Please use the command **$shop** to see all of the items.")
-        if not ctx.author.id in self.data:
+        if not str(ctx.author.id) in self.data:
             document = {"$set": {str(ctx.author.id):{
                 "eggs": 0,
                 "currency": 0,
