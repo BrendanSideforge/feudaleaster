@@ -9,7 +9,9 @@ TOKEN = "NTY1NjU3Nzg0NTExODg5NDQ4.XK5n4Q.GO_xFmOLgZ5cMFovziuOHyH8JzQ"
 
 cogs = [
     "cogs.egg",
-    "cogs.shop"
+    "cogs.shop",
+    "cogs.loot",
+    "cogs.general"
 ]
 
 class FeudalEaster(commands.Bot):
@@ -32,13 +34,15 @@ class FeudalEaster(commands.Bot):
 
         self.embed_colour = 0x7289da
 
+        self.lootbox = "<:lootbox:567061552025305110>"
+
         # Eggs
         self.common_egg = "<:common:565706716843343913>"
         self.uncommon_egg = "<:uncommon:565706709880799247>"
         self.mystical_egg = "<:mystical:565706700825427978>"
 
         self.blacklisted = [
-            280444560973234176
+            483262780376481801 # Abstract
         ]
 
         self.messages = 0
@@ -47,7 +51,7 @@ class FeudalEaster(commands.Bot):
         print("Feudal Easter bot is now online!")
         for cog in cogs:
             try:
-                await bot.load_extension(cog)
+                bot.load_extension(cog)
                 print(f"Loaded {cog}")
             except Exception as er:
                 exc = ''.join(traceback.format_exception(type(er), er, er.__traceback__, chain=False))
