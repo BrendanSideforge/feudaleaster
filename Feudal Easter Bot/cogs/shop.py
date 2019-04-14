@@ -35,6 +35,8 @@ class Shop(commands.Cog):
 
     @commands.command()
     async def buy(self, ctx, *, item = None):
+        if not ctx.channel.id in self.channels:
+            return
         self.data = self.col.find_one()
         if not item:
             return await ctx.send(f"{self.bot.x_mark} Please use the command **$shop** to see all of the items.")
