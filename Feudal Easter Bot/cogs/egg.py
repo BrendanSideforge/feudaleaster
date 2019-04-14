@@ -124,8 +124,8 @@ class Egg(commands.Cog):
                 return await ctx.send(f"{self.bot.omg} **|** You don't have any data in the db. You need to catch some eggs boi!") 
             else:
                 return await ctx.send(f"{self.bot.omg} **|** They don't have any data in the db.")   
-        items = self.data[str(ctx.author.id)]["items"]
-        eggs = self.data[str(ctx.author.id)]["eggs"]
+        items = self.data[str(user.id)]["items"]
+        eggs = self.data[str(user.id)]["eggs"]
         currency = self.data[str(ctx.author.id)]["currency"]
         if items == []:
             items = "No items found."
