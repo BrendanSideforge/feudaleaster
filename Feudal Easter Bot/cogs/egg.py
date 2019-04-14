@@ -110,6 +110,41 @@ class Egg(commands.Cog):
         else:
             return
 
+    @commands.command()
+    async def info(self, ctx, user: discord.Member = None):
+        self.data = self.col.find_one()
+        if ctx.author.id in self.bot.blacklisted:
+            return await ctx.author.send(f"Nope, you're not gonna use any commands.")
+        if not ctx.channel.id in self.channels:
+            return
+        if not user:
+            user = ctx.author 
+        if not str(user.id):
+            if user == ctx.author:
+                return await ctx.send(f"{self.bot.omg} **|** You don't have any data in the db. You need to catch some eggs boi!") 
+            else:
+                return await ctx.send(f"{self.bot.omg} **|** They don't have any data in the db.")   
+        items = self.data[str(ctx.author.id)]["items"]
+        eggs = self.data[str(ctx.author.id)]["eggs"]
+        currency = self.data[str(ctx.author.id)]["currency"]
+        if items == []:
+            items = "No items found."
+        else:
+            items = "\n".join(items)
+        if eggs == 0:
+            eggs = "There isn't any eggs found."
+        else:
+            eggs = eggs 
+        embed = discord.Embed(color=self.bot.embed_colour)
+        embed.set_author(name=user, icon_url=user.avatar_url)
+        embed.description = f"""
+        **Eggs:** {eggs}
+        **Currency:** Currency isn't here yet!
+        ---------------------------------------
+        **Items:** {items}
+        """
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=["lb", "leading"])
     async def leaderboard(self, ctx):
         if ctx.author.id in self.bot.blacklisted:
