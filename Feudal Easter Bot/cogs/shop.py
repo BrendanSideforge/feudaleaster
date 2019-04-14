@@ -60,6 +60,8 @@ class Shop(commands.Cog):
                 }}}
                 self.col.update_one({"auth": True}, document)
                 await ctx.send(f"{self.bot.check_mark} Yay! You have bought the {self.bot.mutliplier} **Egg Multiplier**! You will now get 2x the amount of eggs!")
-
+        else:
+            print("wtf")
+                
 def setup(bot):
     bot.add_cog(Shop(bot))
