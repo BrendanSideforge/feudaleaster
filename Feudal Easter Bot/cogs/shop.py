@@ -30,11 +30,11 @@ class Shop(commands.Cog):
         **Cost:** 5 eggs
         **Description:** Everytime you catch an egg you get 2x the amount of eggs.
         """)
-        embed.set_footer(text="Use the command - $buy <item_id/item_name> - to buy a item!")
+        embed.set_footer(text="Use the command - $buy <item_id> - to buy a item!")
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def buy(self, ctx, *, item = None):
+    async def buy(self, ctx, *, item: int = None):
         if not ctx.channel.id in self.channels:
             return
         self.data = self.col.find_one()
