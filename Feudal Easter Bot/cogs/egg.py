@@ -85,7 +85,7 @@ class Egg(commands.Cog):
                 self.bot.codes = 0
                 self.col.update_one({"auth": True}, document)
                 return
-            if "Egg Multiplier" in self.data[str(ctx.author.id)]["eggs"]:
+            if "Egg Multiplier" in self.data[str(ctx.author.id)]["items"]:
                 document1 = {"$set": {str(ctx.author.id):{
                         "eggs": self.data[str(ctx.author.id)]["eggs"] + 2,
                         "currency": 0,
