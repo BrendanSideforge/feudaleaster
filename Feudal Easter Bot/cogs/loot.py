@@ -30,21 +30,27 @@ class Lootdrops(commands.Cog):
         if code == self.bot.codes1:
             if not str(ctx.author.id) in self.data:
                 print("OK User not registered.")
-                document = {"$set": {str(ctx.author.id):{
-                    "eggs": 5,
-                    "currency": 0,
-                    "items": []
-                }}}
+                document1 = {"$set": {str(ctx.author.id):{
+                        "eggs": 5,
+                        "currency": 0,
+                        "items": self.data[str(ctx.author.id)]["items"],
+                        "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
+                        "loot-streak": self.data[str(ctx.author.id)]["loot-streak"] + 1,
+                        "animals": self.data[str(ctx.author.id)]["animals"]
+                    }}}
                 await ctx.send(f"{self.bot.lootbox} **|** {ctx.author.mention} has caught the drop [**{self.bot.codes1}**]! They now have 5 eggs!")
                 self.bot.codes1 = 0
-                self.col.update_one({"auth": True}, document)
+                self.col.update_one({"auth": True}, document1)
                 return
             else:
                 print("Ok")
                 document2 = {"$set": {str(ctx.author.id):{
-                    "eggs": self.data[str(ctx.author.id)]["eggs"] + 5,
-                    "currency": 0,
-                    "items": self.data[str(ctx.author.id)]["items"]
+                        "eggs": self.data[str(ctx.author.id)]["eggs"] + 5,
+                        "currency": 0,
+                        "items": self.data[str(ctx.author.id)]["items"],
+                        "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
+                        "loot-streak": self.data[str(ctx.author.id)]["loot-streak"] + 1,
+                        "animals": self.data[str(ctx.author.id)]["animals"]
                 }}}
                 self.col.update_one({"auth": True}, document2)
                 await ctx.send(f"{self.bot.lootbox} **|** {ctx.author.mention} has caught the drop [**{self.bot.codes1}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 5} eggs!")
