@@ -92,17 +92,23 @@ class Egg(commands.Cog):
                 document1 = {"$set": {str(ctx.author.id):{
                         "eggs": self.data[str(ctx.author.id)]["eggs"] + 2,
                         "currency": 0,
-                        "items": self.data[str(ctx.author.id)]["items"]
+                        "items": self.data[str(ctx.author.id)]["items"],
+                        "egg-streak": self.data[str(ctx.author.id)]["egg-streak"] + 1,
+                        "loot-streak": self.data[str(ctx.author.id)]["loot-streak"],
+                        "animals": self.data[str(ctx.author.id)]["animals"]
                     }}}
                 self.col.update_one({"auth": True}, document1)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 2} eggs! Since **{ctx.author.name}** has the **Egg Multiplier** he has gotten 2x the eggs!")
                 count = True
             else:
                 document2 = {"$set": {str(ctx.author.id):{
-                    "eggs": self.data[str(ctx.author.id)]["eggs"] + 1,
-                    "currency": 0,
-                    "items": self.data[str(ctx.author.id)]["items"]
-                }}}
+                        "eggs": self.data[str(ctx.author.id)]["eggs"] + 2,
+                        "currency": 0,
+                        "items": self.data[str(ctx.author.id)]["items"],
+                        "egg-streak": self.data[str(ctx.author.id)]["egg-streak"] + 1,
+                        "loot-streak": self.data[str(ctx.author.id)]["loot-streak"],
+                        "animals": self.data[str(ctx.author.id)]["animals"]
+                    }}}
                 self.col.update_one({"auth": True}, document2)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 1} eggs!")
                 self.bot.codes = 0
