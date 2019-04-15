@@ -36,7 +36,8 @@ class Lootdrops(commands.Cog):
                         "items": self.data[str(ctx.author.id)]["items"],
                         "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
                         "loot-streak": self.data[str(ctx.author.id)]["loot-streak"] + 1,
-                        "animals": self.data[str(ctx.author.id)]["animals"]
+                        "animals": self.data[str(ctx.author.id)]["animals"],
+                        "team": self.data[str(ctx.author.id)]["team"]
                     }}}
                 await ctx.send(f"{self.bot.lootbox} **|** {ctx.author.mention} has caught the drop [**{self.bot.codes1}**]! They now have 5 eggs!")
                 self.bot.codes1 = 0
@@ -50,7 +51,8 @@ class Lootdrops(commands.Cog):
                         "items": self.data[str(ctx.author.id)]["items"],
                         "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
                         "loot-streak": self.data[str(ctx.author.id)]["loot-streak"] + 1,
-                        "animals": self.data[str(ctx.author.id)]["animals"]
+                        "animals": self.data[str(ctx.author.id)]["animals"],
+                        "team": self.data[str(ctx.author.id)]["team"]
                 }}}
                 self.col.update_one({"auth": True}, document2)
                 await ctx.send(f"{self.bot.lootbox} **|** {ctx.author.mention} has caught the drop [**{self.bot.codes1}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 5} eggs!")
