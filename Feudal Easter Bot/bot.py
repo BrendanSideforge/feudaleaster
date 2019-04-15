@@ -11,7 +11,8 @@ cogs = [
     "cogs.egg",
     "cogs.shop",
     "cogs.loot",
-    "cogs.general"
+    "cogs.general",
+    "cogs.hatching"
 ]
 
 class FeudalEaster(commands.Bot):
