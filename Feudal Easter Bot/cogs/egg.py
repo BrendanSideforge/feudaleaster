@@ -82,7 +82,10 @@ class Egg(commands.Cog):
                 document = {"$set": {str(ctx.author.id):{
                     "eggs": 1,
                     "currency": 0,
-                    "items": []
+                        "items": [],
+                    "egg-streak": 0,
+                    "loo-streak": 0,
+                    "animals": []
                 }}}
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have 1 egg!")
                 self.bot.codes = 0
