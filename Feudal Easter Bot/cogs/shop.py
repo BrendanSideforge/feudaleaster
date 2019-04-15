@@ -54,6 +54,8 @@ class Shop(commands.Cog):
                 return await ctx.send(f"{self.bot.x_mark} Very sorry **{ctx.author.name}**! You do not have enough eggs to buy the **Egg Multiplier**! Your current eggs are **{eggs}/5**.")
             else:
                 items = self.data[str(ctx.author.id)]['items']
+                if "Egg Multiplier" in items:
+                    return await ctx.send(f"Very sorry **{ctx.author.name}**! You already have this item!")
                 document = {"$set": {str(ctx.author.id):{
                     "eggs": eggs - 5,
                     "currency": self.data[str(ctx.author.id)]["currency"],
