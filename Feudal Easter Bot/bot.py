@@ -43,7 +43,7 @@ class FeudalEaster(commands.Bot):
         self.mystical_egg = "<:mystical:565706700825427978>"
 
         self.blacklisted = [
-            483262780376481801 # Abstract,
+            483262780376481801, # Abstract,
             467028804733501480 # Keep up
         ]
 
