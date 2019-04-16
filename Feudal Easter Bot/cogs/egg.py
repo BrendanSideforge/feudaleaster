@@ -100,8 +100,7 @@ class Egg(commands.Cog):
                         "items": self.data[str(ctx.author.id)]["items"],
                         "egg-streak": self.data[str(ctx.author.id)]["egg-streak"] + 1,
                         "loot-streak": self.data[str(ctx.author.id)]["loot-streak"],
-                        "animals": self.data[str(ctx.author.id)]["animals"],
-                        "team": self.data[str(ctx.author.id)]["team"]
+                        "animals": self.data[str(ctx.author.id)]["animals"]
                     }}}
                 self.col.update_one({"auth": True}, document1)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 2} eggs! Since **{ctx.author.name}** has the **Egg Multiplier** he has gotten 2x the eggs!")
