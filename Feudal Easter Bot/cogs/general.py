@@ -29,7 +29,7 @@ class General(commands.Cog):
                 "currency": self.data[str(user)]["currency"],
                 "items": self.data[str(user)]["items"],
                 "egg-streak": 0,
-                "loo-streak": 0,
+                "loot-streak": 0,
                 "animals": []
             }}}
             self.col.update_one({"auth": True}, document)
