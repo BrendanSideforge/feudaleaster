@@ -44,7 +44,10 @@ class Shop(commands.Cog):
             document = {"$set": {str(ctx.author.id):{
                 "eggs": 0,
                 "currency": 0,
-                "items": []
+                "items": [],
+                "egg-streak": 0,
+                "loot-streak": 0,
+                "animals": []
             }}}
             self.col.update_one({"auth": True}, document)
             return await ctx.send(f"{self.bot.x_mark} You do not have enough eggs to buy any item.")
@@ -59,7 +62,10 @@ class Shop(commands.Cog):
                 document = {"$set": {str(ctx.author.id):{
                     "eggs": eggs - 5,
                     "currency": self.data[str(ctx.author.id)]["currency"],
-                    "items": [*items, 'Egg Multiplier']
+                    "items": [*items, 'Egg Multiplier'],
+                    "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
+                    "loot-streak": self.data[str(ctx.author.id)]["loot-streak"],
+                    "animals: self.data[str(ctx.author.id)]["animals"]
                 }}}
                 self.col.update_one({"auth": True}, document)
                 await ctx.send(f"{self.bot.check_mark} Yay! You have bought the {self.bot.mutliplier} **Egg Multiplier**! You will now get 2x the amount of eggs!")
