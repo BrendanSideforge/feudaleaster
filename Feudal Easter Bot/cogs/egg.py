@@ -104,6 +104,7 @@ class Egg(commands.Cog):
                     }}}
                 self.col.update_one({"auth": True}, document1)
                 await ctx.send(f"{self.bot.egg} **|** {ctx.author.mention} has caught the egg [**{self.bot.codes}**]! They now have {self.data[str(ctx.author.id)]['eggs'] + 2} eggs! Since **{ctx.author.name}** has the **Egg Multiplier** he has gotten 2x the eggs!")
+                self.bot.codes = 0
                 return
             else:
                 document2 = {"$set": {str(ctx.author.id):{
