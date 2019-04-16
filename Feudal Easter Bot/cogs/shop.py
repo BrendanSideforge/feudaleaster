@@ -65,7 +65,7 @@ class Shop(commands.Cog):
                     "items": [*items, 'Egg Multiplier'],
                     "egg-streak": self.data[str(ctx.author.id)]["egg-streak"],
                     "loot-streak": self.data[str(ctx.author.id)]["loot-streak"],
-                    "animals: self.data[str(ctx.author.id)]["animals"]
+                    "animals": self.data[str(ctx.author.id)]["animals"]
                 }}}
                 self.col.update_one({"auth": True}, document)
                 await ctx.send(f"{self.bot.check_mark} Yay! You have bought the {self.bot.mutliplier} **Egg Multiplier**! You will now get 2x the amount of eggs!")
