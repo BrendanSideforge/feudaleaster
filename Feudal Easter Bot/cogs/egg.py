@@ -173,8 +173,8 @@ class Egg(commands.Cog):
             draw.text((90, y_text), line, font=textfont, fill="#ffffff")
             y_text += height+3
         bg.paste(im, (10, 70), mask)
-        bg.save('Images/Info.png')
-        await ctx.send(file=discord.File('Images/Info.png'))
+        bg.save(f'Images/{user.name}info.png')
+        await ctx.send(file=discord.File(f'{user.name}info.png'))
 
 
     @commands.command(aliases=["lb", "leading"])
