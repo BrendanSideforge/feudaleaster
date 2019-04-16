@@ -151,8 +151,8 @@ class Egg(commands.Cog):
         Eggs: {eggs}
         Currency: {self.data[str(user.id)]["currency"]}
         Items: {items}
-        Egg-Steak: {self.data[str(user.id)]["egg-streak"]
-        Loot-Streak: {self.data[str(user.id)]["loot-streak"]
+        Egg-Steak: {self.data[str(user.id)]["egg-streak"]}
+        Loot-Streak: {self.data[str(user.id)]["loot-streak"]}
         """
 
         textfont = ImageFont.truetype("Images/Malvie.otf", 30, encoding='unic')
