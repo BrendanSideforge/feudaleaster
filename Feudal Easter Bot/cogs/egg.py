@@ -4,6 +4,11 @@ import pymongo
 from pymongo import MongoClient as mcl
 from collections import defaultdict
 import random
+import textwrap
+import io
+from io import BytesIO
+import requests
+from PIL import Image, ImageDraw, ImageFont
 
 class Egg(commands.Cog):
     def __init__(self, bot):
@@ -146,16 +151,34 @@ class Egg(commands.Cog):
         if eggs == 0:
             eggs = "There isn't any eggs found."
         else:
-            eggs = eggs 
-        embed = discord.Embed(color=self.bot.embed_colour)
-        embed.set_author(name=user, icon_url=user.avatar_url)
-        embed.description = f"""
-        **Eggs:** {eggs}
-        **Currency:** Currency isn't here yet!
-        ---------------------------------------
-        **Items:** {items}
+            eggs = eggs
+        text = f"""
+        Eggs: {eggs}
+        Currency: {self.data[str(user.id)]["currency"]}
+        Items: {items}
         """
-        await ctx.send(embed=embed)
+
+        textfont = ImageFont.truetype("Images/Malvie.otf", 30, encoding='unic')
+        im = Image.open(BytesIO(requests.get(ctx.author.avatar_url).content))
+        titlefont = ImageFont.truetype("Images/Malvie.otf", 15, encoding='unic')
+        im = im.resize((100, 100), Image.ANTIALIAS)
+        mask = Image.new('L', im.size)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((0, 0) + im.size, fill=255)
+        width, height = textfont.getsize(text)
+        bg = Image.open("Images/galaxy.jpg")
+        draw = ImageDraw.Draw(bg)
+        W, H = bg.size 
+        lines = text.split('\n')
+        draw.text((5, 50), f"{user.name}", font=titlefont, fill="#ffffff")
+        y_text = 55
+        for line in lines:
+            draw.text((90, y_text), line, font=textfont, fill="#ffffff")
+            y_text += height+3
+        bg.paste(im, (10, 70), mask)
+        bg.save('Images/Info.png')
+        await ctx.send(file=discord.File('Images/Info.png'))
+
 
     @commands.command(aliases=["lb", "leading"])
     async def leaderboard(self, ctx):
