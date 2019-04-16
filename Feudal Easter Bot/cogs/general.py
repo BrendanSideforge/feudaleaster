@@ -28,8 +28,8 @@ class General(commands.Cog):
                 "eggs": self.data[str(user)]["eggs"],
                 "currency": self.data[str(user)]["currency"],
                 "items": self.data[str(user)]["items"],
-                "egg-streak": self.data[str(user)]["egg-streak"],
-                "loo-streak": self.data[str(user)]["loot-streak"],
+                "egg-streak": 0,
+                "loo-streak": 0,
                 "animals": []
             }}}
             self.col.update_one({"auth": True}, document)
