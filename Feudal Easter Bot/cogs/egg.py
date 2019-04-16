@@ -159,22 +159,17 @@ class Egg(commands.Cog):
         im = Image.open(BytesIO(requests.get(ctx.author.avatar_url).content))
         titlefont = ImageFont.truetype("Images/Malvie.otf", 15, encoding='unic')
         im = im.resize((100, 100), Image.ANTIALIAS)
-        mask = Image.new('L', im.size)
-        draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0) + im.size, fill=255)
         width, height = textfont.getsize(text)
         bg = Image.open("Images/galaxy.jpg")
         draw = ImageDraw.Draw(bg)
         W, H = bg.size 
         lines = text.split('\n')
-        draw.text((5, 50), f"{user.name}", font=titlefont, fill="#ffffff")
         y_text = 55
         for line in lines:
             draw.text((90, y_text), line, font=textfont, fill="#ffffff")
             y_text += height+3
-        bg.paste(im, (10, 70), mask)
         bg.save(f'Images/{user.name}info.png')
-        await ctx.send(file=discord.File(f'Images/{user.name}info.png'))
+        await ctx.send(context=f"Showing information for **{user.name}**!", file=discord.File(f'Images/{user.name}info.png'))
 
 
     @commands.command(aliases=["lb", "leading"])
